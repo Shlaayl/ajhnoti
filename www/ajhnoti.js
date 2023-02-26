@@ -10,3 +10,5 @@ exports.checkNotificationPermission = function (arg0, error) {
     }, error, 'ajhnoti', 'checkNotificationPermission', [arg0]);
 
 };
+
+exports.test="test";
