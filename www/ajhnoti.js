@@ -14,5 +14,5 @@ exports.checkNotificationPermission = function (arg0, error) {
 exports.test="test";
 
 exports.test1=function(){
-    return "Test1"
+    return "Test1";
 };
