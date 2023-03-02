@@ -1,13 +1,19 @@
 package ajh.notification.com;
 
+import static androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale;
+
+
+import android.Manifest;
 import android.content.Context;
 
+
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
-import org.apache.cordova.device.Device;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +34,15 @@ public class ajhnoti extends CordovaPlugin {
             json.put("checkNotificationPermission", checkNotificationPermission());
             callbackContext.success(json);
             return true;
+        }else if(action.equals("requestNotificationPermission")){
+            try{
+                requestNotificationPermission();
+                callbackContext.success("Succeed");
+            } catch (Exception e) {
+                e.printStackTrace();
+                callbackContext.error(e.getMessage());
+            }
+            return true;
         }
         return false;
     }
@@ -43,5 +58,18 @@ public class ajhnoti extends CordovaPlugin {
     private  boolean checkNotificationPermission(){
         Context context=this.cordova.getActivity().getApplicationContext();
         return NotificationManagerCompat.from(context).areNotificationsEnabled();
+    }
+
+    private  void requestNotificationPermission(){
+        int PERMISSION_REQUEST_CODE =112;
+        try {
+                ActivityCompat.requestPermissions(this.cordova.getActivity(),
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        PERMISSION_REQUEST_CODE);
+
+        }catch (Exception e){
+            throw e;
+        }
+
     }
 }

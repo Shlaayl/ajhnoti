@@ -5,10 +5,12 @@ exports.coolMethod = function (arg0, success, error) {
 };
 
 exports.checkNotificationPermission = function (arg0, success, error) {
-    //(json)=>{
-       // return json.checkNotificationPermission;
-   // }
     exec(success, error, 'ajhnoti', 'checkNotificationPermission', [arg0]);
+
+};
+
+exports.requestNotificationPermission = function (arg0, success, error) {
+    exec(success, error, 'ajhnoti', 'requestNotificationPermission', [arg0]);
 
 };
 
